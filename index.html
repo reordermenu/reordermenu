@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colorado Prime Foods</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #f5f0e8;
+      --brown: #2c1a0e;
+      --red: #8b1a1a;
+      --red-light: #a52020;
+      --gold: #b8860b;
+      --gray: #5a5248;
+      --border: #e0d8cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--brown);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f5e6c8;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--gold); }
+
+    nav { display: flex; gap: 0.25rem; }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(245,230,200,0.7);
+      text-decoration: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: #f5e6c8; background: rgba(255,255,255,0.07); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--brown);
+      color: #f5e6c8;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(139,26,26,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(245,230,200,0.7);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+      border: 2px solid var(--red);
+    }
+    .btn-red:hover { background: var(--red-light); border-color: var(--red-light); }
+
+    .btn-ghost {
+      background: transparent;
+      color: #f5e6c8;
+      border: 2px solid rgba(245,230,200,0.35);
+    }
+    .btn-ghost:hover { border-color: #f5e6c8; }
+
+    /* ── INFO BAR ── */
+    .info-bar {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .info-bar a { color: #ffe8b0; text-decoration: none; font-weight: 700; }
+    .info-bar a:hover { text-decoration: underline; }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.2;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--red);
+      margin: 1rem auto 0;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--warm-white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .about p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--gray);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .feature {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+    }
+
+    .feature-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.35rem;
+    }
+
+    .feature p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── COOKING GUIDE ── */
+    .cooking { background: var(--cream); }
+
+    .cooking-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) { .cooking-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .cooking-img {
+      width: 280px;
+      border: 1px solid var(--border);
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 700px) { .cooking-img { width: 100%; max-width: 320px; margin: 0 auto; display: block; } }
+
+    .cooking-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--brown);
+    }
+
+    .cooking-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--gray);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── PRODUCT TABLE ── */
+    .products { background: var(--warm-white); }
+
+    .category-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.15s;
+      border-radius: 2px;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      max-width: 420px;
+      padding: 0.75rem 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      color: var(--brown);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--red); }
+    .search-bar input::placeholder { color: #b0a898; }
+
+    .category-section { margin-bottom: 2.5rem; }
+
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--brown);
+      padding: 0.6rem 1rem;
+      background: var(--cream);
+      border-left: 4px solid var(--red);
+      margin-bottom: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead th {
+      background: var(--brown);
+      color: #f5e6c8;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      text-align: left;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    tbody tr:hover { background: rgba(139,26,26,0.04); }
+
+    tbody td {
+      padding: 0.6rem 1rem;
+      color: var(--gray);
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--brown);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    tbody td:nth-child(2) { color: var(--brown); font-weight: 400; }
+
+    .hidden { display: none; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--brown); color: #f5e6c8; }
+
+    .contact .section-eyebrow { color: var(--gold); }
+    .contact .section-header h2 { color: #f5e6c8; }
+    .contact .divider { background: var(--gold); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .contact-item h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-item p, .contact-item a {
+      font-size: 1rem;
+      color: rgba(245,230,200,0.75);
+      font-weight: 300;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: #f5e6c8; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a0f06;
+      text-align: center;
+      padding: 1.8rem 2rem;
+      font-size: 0.8rem;
+      color: rgba(245,230,200,0.3);
+    }
+
+    @media print {
+      header, .hero, .info-bar, .about, .cooking, .contact, footer,
+      .search-bar, .category-filter, .print-hide {
+        display: none !important;
+      }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .section.products { padding: 0; }
+      .section-header { margin-bottom: 1rem; }
+      .section-header h2 { font-size: 18pt; color: #2c1a0e; }
+      .section-eyebrow, .divider { display: none; }
+      #productList { display: block !important; }
+      .category-section { display: block !important; page-break-inside: avoid; margin-bottom: 1rem; }
+      .category-title {
+        font-size: 11pt;
+        font-weight: bold;
+        background: #eee !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        border-left: 3px solid #8b1a1a;
+        padding: 4px 8px;
+        margin-top: 12px;
+      }
+      table { font-size: 9pt; width: 100%; page-break-inside: auto; display: table !important; }
+      thead { display: table-header-group !important; }
+      thead th {
+        background: #2c1a0e !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 4px 8px;
+        font-size: 8pt;
+      }
+      tbody { display: table-row-group !important; }
+      tbody tr { display: table-row !important; }
+      tbody td { display: table-cell !important; padding: 3px 8px; border-bottom: 1px solid #ddd; }
+      a { color: #000; text-decoration: none; }
+    }
+    @media (max-width: 500px) {
+      nav a { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+      .logo { font-size: 1rem; }
+    }
+    .print-only { display: none; }
+    @media print {
+      .print-only { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">Colorado <span>Prime</span> Foods</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#cooking">Cooking Guide</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Gourmet Dining at Home Since 1959</div>
+    <h1>Colorado Prime Foods</h1>
+    <p>Enjoy the convenience of home delivery and have delicious food always on hand.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-red">View Product Listing</a>
+      <a href="#cooking" class="btn btn-ghost">Cooking Guide</a>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    Call us to place your order: <a href="tel:18003652404">1-800-365-2404</a> &nbsp;·&nbsp; Mon–Fri 9:00AM–5:00PM EST
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-eyebrow">About Us</div>
+          <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:1.2rem; line-height:1.2;">The Finest Foods, Delivered to Your Door</h2>
+          <p>Providing the finest Beef, Poultry, Pork, Ribs, Ham, Seafood, Appetizers, Italian, Vegetables, Side Dishes, and Desserts since 1959.</p>
+          <p>Chances are, if you are coming to us by referral, it's because you have already tried — and loved — some of our food at one of our customer's homes.</p>
+          <p>Our knowledgeable and friendly Food Specialists are available to explain all of our services and customize a food plan that works best for you.</p>
+        </div>
+        <div class="about-features">
+          <div class="feature">
+            <div class="feature-title">Top 12% Beef</div>
+            <p>Only the finest cuts, gourmet trimmed to restaurant quality.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-title">Flash Frozen</div>
+            <p>Cryovac packaging locks in freshness from our kitchen to yours.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-title">Individual Portions</div>
+            <p>Convenient single-serve packaging for easy meal planning.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-title">Home Delivery</div>
+            <p>Gourmet foods normally reserved for the finest restaurants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COOKING GUIDE -->
+  <section class="section cooking" id="cooking">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Reference</div>
+        <h2>Cooking Guide</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="cooking-inner">
+        <img
+          src="https://reordermenu.com/wp-content/uploads/2018/01/cooking_guide-1.jpg"
+          alt="Colorado Prime Foods Cooking Guide"
+          class="cooking-img"
+        />
+        <div class="cooking-content">
+          <h3>How to Prepare Your Colorado Prime Foods</h3>
+          <p>Our cooking guide covers preparation times and temperatures for every product in our lineup — from premium steaks and roasts to seafood, poultry, and prepared entrees.</p>
+          <p>Click the image to view the full guide, or open it in a new tab for easy reference while you cook.</p>
+          <a href="https://reordermenu.com/wp-content/uploads/2018/01/cooking_guide-1.jpg" target="_blank" class="btn btn-red">View Full Cooking Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Catalog</div>
+        <h2>Product Listing</h2>
+        <div class="divider"></div>
+      </div>
+
+      <!-- Print header - only shows when printing -->
+      <div style="display:none;" class="print-only">
+        <h1 style="font-family:'Playfair Display',serif; font-size:20pt; color:#2c1a0e; margin-bottom:0.25rem;">Colorado Prime Foods</h1>
+        <p style="font-size:10pt; color:#5a5248; margin-bottom:1rem;">Product Listing &nbsp;·&nbsp; 1-800-365-2404 &nbsp;·&nbsp; Mon–Fri 9AM–5PM EST</p>
+        <hr style="border:1px solid #ccc; margin-bottom:1rem;" />
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="print-hide" style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-bottom:2.5rem;">
+        <a href="product-list.pdf" download
+           style="display:inline-flex; align-items:center; gap:0.6rem; background:var(--red); color:#fff; font-family:'Source Sans 3',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:1.1rem 2.2rem; border:none; cursor:pointer; text-decoration:none; transition:background 0.2s;"
+           onmouseover="this.style.background='#a52020'" onmouseout="this.style.background='#8b1a1a'">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Download Product List (PDF)
+        </a>
+        <button onclick="window.print()"
+           style="display:inline-flex; align-items:center; gap:0.6rem; background:var(--brown); color:#f5e6c8; font-family:'Source Sans 3',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:1.1rem 2.2rem; border:none; cursor:pointer; transition:background 0.2s;"
+           onmouseover="this.style.background='#4a2e1a'" onmouseout="this.style.background='var(--brown)'">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Product List
+        </button>
+      </div>
+
+
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by item # or description..." oninput="filterProducts()" />
+      </div>
+
+      <div class="category-filter" id="categoryFilter">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+      </div>
+
+      <div id="productList">
+
+        <div class="category-section">
+          <div class="category-title">Appetizers</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>118</td><td>Buffalo Wings</td><td>30</td><td>40 oz.</td></tr>
+            <tr><td>1162</td><td>Mozzarella Sticks</td><td>26</td><td>32 oz.</td></tr>
+            <tr><td>3745</td><td>Mini Chicken Cordon Bleu Bites - 1 oz.</td><td>100</td><td>100 oz.</td></tr>
+            <tr><td>6933</td><td>Cooked BBQ Wings</td><td>1 Bag</td><td>40 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Beef – Everyday Beef</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>113</td><td>Beef for Stew</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>116</td><td>Sirloin Teriyaki Filets</td><td>2</td><td>12 oz.</td></tr>
+            <tr><td>117</td><td>Short Ribs Beef</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>123</td><td>Cubed Steak Beef Round</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>136</td><td>Top Round/London Broil</td><td>1</td><td>18 oz.</td></tr>
+            <tr><td>137</td><td>Top Round/London Broil</td><td>1</td><td>30 oz.</td></tr>
+            <tr><td>177</td><td>Beef Brisket</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>179</td><td>Corned Beef – First Cut</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>376</td><td>Top Round Beef Steak</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>379</td><td>Flank Steak</td><td>1</td><td>28 oz.</td></tr>
+            <tr><td>470</td><td>Deluxe Sirloin Steak</td><td>1</td><td>24 oz.</td></tr>
+            <tr><td>479</td><td>Sirloin Teriyaki Steak</td><td>1</td><td>28 oz.</td></tr>
+            <tr><td>536</td><td>Skirt Steaks - 8 oz.</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>598</td><td>Top Cut Chuck Steaks</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>659</td><td>Thick Cut Top Sirloin Filets</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>676</td><td>Top Sirloin Filets</td><td>2</td><td>12 oz.</td></tr>
+            <tr><td>677</td><td>Boneless Chuck Steak</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>1155</td><td>London Broil – Teriyaki</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1156</td><td>London Broil – Garlic Butter</td><td>1</td><td>24 oz.</td></tr>
+            <tr><td>1177</td><td>Beef Sirloin Kabobs</td><td>3</td><td>18 oz.</td></tr>
+            <tr><td>1288</td><td>Flat Iron Steak</td><td>6</td><td>36 oz.</td></tr>
+            <tr><td>1332</td><td>Teres Major Filet – Teriyaki</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>1333</td><td>Teres Major Filet – Pepper Rub</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>5517</td><td>Petite Teres Filet - 3 oz.</td><td>6</td><td>18 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Beef – Ground Beef &amp; Burgers</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>101</td><td>Ground Beef Patties</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>110</td><td>Ground Beef</td><td>2</td><td>32 oz.</td></tr>
+            <tr><td>381</td><td>91% Lean Ground Beef</td><td>2</td><td>32 oz.</td></tr>
+            <tr><td>388</td><td>Meat Loaf – Ready To Cook</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>631</td><td>Jumbo Steak Burgers</td><td>2</td><td>12 oz.</td></tr>
+            <tr><td>1157</td><td>Beef Patties 90% Lean</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>1158</td><td>Beef Patties 85% Lean</td><td>8</td><td>32 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Beef – Premium Steaks</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>105</td><td>Filet Mignon</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>133</td><td>Porterhouse Steak</td><td>1</td><td>23 oz.</td></tr>
+            <tr><td>144</td><td>Bacon Wrap Filet Mignon</td><td>8</td><td>48 oz.</td></tr>
+            <tr><td>150</td><td>Delmonico Steak/Rib Steak – Bone-In</td><td>1</td><td>15 oz.</td></tr>
+            <tr><td>154</td><td>Kansas City Ribeye</td><td>8</td><td>64 oz.</td></tr>
+            <tr><td>155</td><td>NY Strip Steak – 1-1/2" Thick Cut</td><td>2</td><td>30 oz.</td></tr>
+            <tr><td>168</td><td>Beef Steak NY Strip – 8-Pack</td><td>8</td><td>64 oz.</td></tr>
+            <tr><td>423</td><td>NY Strip Steak – 2-Pack</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>508</td><td>Boneless Rib Eye Steaks</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>515</td><td>Porterhouse Steak</td><td>1</td><td>14 oz.</td></tr>
+            <tr><td>658</td><td>Thick Cut Filet Mignon</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>668</td><td>Thick Cut T-Bone Steak</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>1227</td><td>Bacon Wrapped Filet Mignon</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>1230</td><td>Ribeye Steak – 1-1/4" Thick Cut</td><td>2</td><td>24 oz.</td></tr>
+            <tr><td>1335</td><td>Manhattan Cut NY Strip Steak</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>4072</td><td>Ribeye Steaks, No Tail - 8 oz.</td><td>8</td><td>64 oz.</td></tr>
+            <tr><td>4503</td><td>Filet Mignon Steak - 8 oz.</td><td>12</td><td>96 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Beef – Roasts</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>158</td><td>Beef Bottom Round Roast</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>163</td><td>Boneless Beef Chuck Roast</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>165</td><td>Eye Round Roast</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>166</td><td>Rump Roast</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>167</td><td>Beef Top Round Roast</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>169</td><td>Beef Sirloin Tip Roast</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>171</td><td>Rib Roast – 2 Rib</td><td>1</td><td>72 oz.</td></tr>
+            <tr><td>483</td><td>Beef Tenderloin</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>649</td><td>Rib Roast – 3 Rib</td><td>1</td><td>96 oz.</td></tr>
+            <tr><td>1320</td><td>Quick Roast – Eye of Round Roast</td><td>1</td><td>24 oz.</td></tr>
+            <tr><td>1321</td><td>Quick Roast – Sirloin Tip Roast</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1322</td><td>Quick Roast – Top Round London Broil</td><td>1</td><td>24 oz.</td></tr>
+            <tr><td>6908</td><td>Pre-Cooked Prime Rib Roast</td><td>1</td><td>80 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Breakfast</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>335</td><td>Bacon</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>624</td><td>Low-Salt Bacon</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>626</td><td>Premium Sausage Patties</td><td>40</td><td>80 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Dessert</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>480</td><td>Apple Gourmet High Pie – 10"</td><td>1</td><td>49 oz.</td></tr>
+            <tr><td>497</td><td>Cherry Pie Unbaked – 10"</td><td>1</td><td>46 oz.</td></tr>
+            <tr><td>641</td><td>Chocolate Chip Cookies</td><td>48</td><td>48 oz.</td></tr>
+            <tr><td>650</td><td>Carrot Cake – 9"</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>692</td><td>Pecan Pie Unsliced – 10"</td><td>1</td><td>36 oz.</td></tr>
+            <tr><td>693</td><td>Key Lime Pie</td><td>1</td><td>36 oz.</td></tr>
+            <tr><td>1269</td><td>Pumpkin Pie, Precooked – 10"</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>5502</td><td>Pecan Fudge Caramel Cake – 10"</td><td>1</td><td>60 oz.</td></tr>
+            <tr><td>6835</td><td>Cheesecake Presliced</td><td>1</td><td>68 oz.</td></tr>
+            <tr><td>7217</td><td>Mango Pie 10"</td><td>1</td><td>42 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Exotic</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>570</td><td>Ground Buffalo</td><td>1</td><td>16 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Italian</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>241</td><td>Italian Sausage – Hot</td><td>5</td><td>16 oz.</td></tr>
+            <tr><td>243</td><td>Italian Sausage – Sweet</td><td>5</td><td>16 oz.</td></tr>
+            <tr><td>1174</td><td>Garlic Bread</td><td>1</td><td>10 oz.</td></tr>
+            <tr><td>1286</td><td>Cooked Meatballs – I.Q.F.</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>4507</td><td>Calzone - Pepperoni &amp; 4 Cheese</td><td>6</td><td>36 oz.</td></tr>
+            <tr><td>4510</td><td>Grilled Italian Pannini - 9 oz.</td><td>12</td><td>108 oz.</td></tr>
+            <tr><td>4511</td><td>Grilled Chicken Caesar Pannini - 9 oz.</td><td>12</td><td>108 oz.</td></tr>
+            <tr><td>5650</td><td>Mini Cheese Pizza – 7"</td><td>6</td><td>55 oz.</td></tr>
+            <tr><td>5651</td><td>Mini Pizza - Pepperoni &amp; Cheese – 7"</td><td>6</td><td>50 oz.</td></tr>
+            <tr><td>5658</td><td>Cheese Pizza – 12"</td><td>4</td><td>114 oz.</td></tr>
+            <tr><td>5659</td><td>Pepperoni Pizza – 12"</td><td>4</td><td>108 oz.</td></tr>
+            <tr><td>7955</td><td>Meat Lasagna Tray 38 oz.</td><td>1</td><td>38 oz.</td></tr>
+            <tr><td>8039</td><td>Cheese Manicotti 25 oz.</td><td>1</td><td>25 oz.</td></tr>
+            <tr><td>8043</td><td>Cheese Ravioli 20 oz.</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>8044</td><td>Chicken &amp; Spinach Ravioli 20 oz.</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>8045</td><td>Lobster Ravioli 20 oz.</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>8047</td><td>Tortelinni Asiago 20 oz.</td><td>1</td><td>20 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Lamb &amp; Veal</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>128</td><td>Thick Cut Loin Veal Chops</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>132</td><td>Thick Cut Loin Lamb Chops</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>146</td><td>Leg of Lamb Cut in Half</td><td>2</td><td>72 oz.</td></tr>
+            <tr><td>213</td><td>Loin Lamb Chops</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>430</td><td>Veal Cutlets</td><td>12</td><td>24 oz.</td></tr>
+            <tr><td>566</td><td>Rack of Lamb</td><td>1</td><td>24 oz.</td></tr>
+            <tr><td>4082</td><td>Veal Scallopine - 2 lb.</td><td>10/12</td><td>32 oz.</td></tr>
+            <tr><td>4084</td><td>Veal Patties, Breaded - 6 lb.</td><td>1</td><td>96 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Lunch</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>211</td><td>Seasoned Taco Meat</td><td>4</td><td>64 oz.</td></tr>
+            <tr><td>334</td><td>Hebrew National Franks</td><td>7</td><td>12 oz.</td></tr>
+            <tr><td>346</td><td>All Beef Premium Franks</td><td>8</td><td>16 oz.</td></tr>
+            <tr><td>365</td><td>Philly Steak</td><td>18</td><td>72 oz.</td></tr>
+            <tr><td>367</td><td>All Beef Chili</td><td>4</td><td>64 oz.</td></tr>
+            <tr><td>592</td><td>Turkey Franks</td><td>12</td><td>16 oz.</td></tr>
+            <tr><td>1327</td><td>Chicken Patties</td><td>9</td><td>36 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Pork</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>135</td><td>Ham Steak Bone In</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>210</td><td>Center Cut Boneless Pork Roast</td><td>1</td><td>40 oz.</td></tr>
+            <tr><td>220</td><td>Loin Pork Roast – Bone-in</td><td>1</td><td>52 oz.</td></tr>
+            <tr><td>247</td><td>Pork Barbecue Mild – Shredded</td><td>4</td><td>64 oz.</td></tr>
+            <tr><td>401</td><td>Spiral Sliced Ham – Bone-in</td><td>1</td><td>120 oz.</td></tr>
+            <tr><td>632</td><td>Boneless Pork Roast</td><td>1</td><td>74 oz.</td></tr>
+            <tr><td>1159</td><td>Pork Cutlets Boneless</td><td>5</td><td>15 oz.</td></tr>
+            <tr><td>1433</td><td>Pork Tenderloins</td><td>4</td><td>80 oz.</td></tr>
+            <tr><td>6932</td><td>Cooked Pork Boston Butt</td><td>1</td><td>72 oz.</td></tr>
+            <tr><td>8040</td><td>Pork Sausage Polish Kielbasa</td><td>1</td><td>14 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Pork – Chops</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>221</td><td>Center Cut Pork Chops – Bone-in</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>222</td><td>Brown &amp; Serve Pork Chops</td><td>5</td><td>20 oz.</td></tr>
+            <tr><td>410</td><td>Boneless Center Cut Pork Chops</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>505</td><td>Traditional Stuffed Pork Chops</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>533</td><td>Apple &amp; Cinnamon Stuffed Pork Chops</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>657</td><td>Thick Cut Center Cut Pork Chops</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1081</td><td>Boneless Center Cut Pork Chops</td><td>16</td><td>64 oz.</td></tr>
+            <tr><td>6577</td><td>Pork Porterhouse T-Bone - 10 oz.</td><td>4</td><td>40 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Pork – Ribs</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>393</td><td>Fully Cooked BBQ Spare Ribs</td><td>4</td><td>64 oz.</td></tr>
+            <tr><td>400</td><td>Rack Spare Ribs</td><td>3</td><td>48 oz.</td></tr>
+            <tr><td>454</td><td>Pork Spare Ribs Baby Back</td><td>2</td><td>20 oz.</td></tr>
+            <tr><td>5040</td><td>Country-Style Spare Ribs</td><td>8</td><td>64 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Poultry</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>205</td><td>Cornish Game Hen</td><td>1</td><td>18 oz.</td></tr>
+            <tr><td>214</td><td>Chicken Drumsticks</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>257</td><td>Broilers (in Quarters)</td><td>1</td><td>52/56 oz.</td></tr>
+            <tr><td>262</td><td>Roaster</td><td>1</td><td>52/56 oz.</td></tr>
+            <tr><td>269</td><td>Chicken Legs &amp; Thighs</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>273</td><td>Chicken Wings</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>281</td><td>12/14 lbs. Whole Turkey</td><td>1</td><td>192/224 oz.</td></tr>
+            <tr><td>326</td><td>Chicken Nuggets</td><td>50</td><td>36 oz.</td></tr>
+            <tr><td>364</td><td>Fully Roasted Half Duck with Orange Sauce</td><td>1</td><td>14 oz.</td></tr>
+            <tr><td>494</td><td>Ground Turkey</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>591</td><td>Chicken Breast Roaster</td><td>1</td><td>88 oz.</td></tr>
+            <tr><td>1057</td><td>Chicken Thighs – Bone-in</td><td>8/9</td><td>48 oz.</td></tr>
+            <tr><td>1058</td><td>Chicken Thighs – Boneless</td><td>14/16</td><td>80 oz.</td></tr>
+            <tr><td>1125</td><td>Bacon Wrapped Turkey Filet Mignons</td><td>4</td><td>20 oz.</td></tr>
+            <tr><td>1149</td><td>Chicken Fryer – Cut - 8 pieces</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>1234</td><td>Cooked Breaded Chicken Tenders</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>4074</td><td>Chicken Pot Pie</td><td>6</td><td>66 oz.</td></tr>
+            <tr><td>4075</td><td>Whole Chicken Roaster, Perdue 5-6 lb.</td><td>1</td><td>88 oz.</td></tr>
+            <tr><td>6849</td><td>Turkey Breast – Bone-in 12/14 lb.</td><td>1</td><td>192/224 oz.</td></tr>
+            <tr><td>8038</td><td>Chicken Kabob (3) 6 oz.</td><td>3</td><td>18 oz.</td></tr>
+            <tr><td>8048</td><td>Turkey Burger (2) 8 oz.</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>8049</td><td>Chicken Philly Cheesesteak Kit</td><td>1</td><td>80 oz.</td></tr>
+            <tr><td>8051</td><td>Jamaican Marinade Chicken Cut Up</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>8052</td><td>Italian Chicken Sausage 1 lb.</td><td>5</td><td>16 oz.</td></tr>
+            <tr><td>8053</td><td>Spinach &amp; Feta Chicken Sausage</td><td>5</td><td>16 oz.</td></tr>
+            <tr><td>8054</td><td>All White Meat Chicken Ground</td><td>1</td><td>16 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Poultry – Cutlets</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>218</td><td>Jumbo Chicken Cutlets</td><td>6</td><td>36 oz.</td></tr>
+            <tr><td>236</td><td>Turkey Breast Cutlets</td><td>16</td><td>64 oz.</td></tr>
+            <tr><td>290</td><td>Chicken Breast Split</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>420</td><td>Boneless Chicken Breast Cutlet Box</td><td>8</td><td>32 oz.</td></tr>
+            <tr><td>1163</td><td>Turkey Breast Cutlets</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>4076</td><td>Chicken Breast Boneless/Skinless - 5 lb.</td><td>16</td><td>80 oz.</td></tr>
+            <tr><td>7204</td><td>Teriyaki Chicken Breast (8) 5 oz.</td><td>8</td><td>40 oz.</td></tr>
+            <tr><td>7211</td><td>Natural Marinated Chicken Breast (16) 5 oz.</td><td>16</td><td>80 oz.</td></tr>
+            <tr><td>7213</td><td>Lemon-Pepper Chicken Breast (8) 5 oz.</td><td>8</td><td>40 oz.</td></tr>
+            <tr><td>7214</td><td>BBQ Marinated Chicken Breast (8) 5 oz.</td><td>8</td><td>40 oz.</td></tr>
+            <tr><td>7215</td><td>Honey Mustard Chicken Breast (8) 5 oz.</td><td>8</td><td>40 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Prepared Entree</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>330</td><td>Chicken Kiev</td><td>6</td><td>42 oz.</td></tr>
+            <tr><td>349</td><td>Chicken Cordon Bleu</td><td>6</td><td>42 oz.</td></tr>
+            <tr><td>389</td><td>Precooked Pot Roast</td><td>1</td><td>40 oz.</td></tr>
+            <tr><td>431</td><td>Chicken Parmesan</td><td>4</td><td>28 oz.</td></tr>
+            <tr><td>482</td><td>Rotisserie Chicken – Halved</td><td>2</td><td>48 oz.</td></tr>
+            <tr><td>642</td><td>Stuffed Peppers</td><td>6</td><td>48 oz.</td></tr>
+            <tr><td>643</td><td>Fettuccini Alfredo</td><td>2</td><td>48 oz.</td></tr>
+            <tr><td>653</td><td>Baked Ziti</td><td>2</td><td>48 oz.</td></tr>
+            <tr><td>670</td><td>Honey BBQ Marinated Roaster</td><td>1</td><td>64 oz.</td></tr>
+            <tr><td>1122</td><td>Salisbury Steaks with Gravy</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>1164</td><td>Chicken Fingers – Italian</td><td>1</td><td>42 oz.</td></tr>
+            <tr><td>1455</td><td>Boneless Prime Rib Roast</td><td>1</td><td>80 oz.</td></tr>
+            <tr><td>8050</td><td>Chicken Dumplings Cooked</td><td>1</td><td>32 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Seafood – Fish</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>126</td><td>Red Snapper Fillets</td><td>3</td><td>24 oz.</td></tr>
+            <tr><td>195</td><td>Codfish Fillets</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>251</td><td>Catfish Fillets</td><td>6</td><td>48 oz.</td></tr>
+            <tr><td>328</td><td>Salmon Fillets</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>350</td><td>Tuna Steaks</td><td>8</td><td>48 oz.</td></tr>
+            <tr><td>363</td><td>Swordfish Steaks</td><td>8</td><td>48 oz.</td></tr>
+            <tr><td>377</td><td>Cod Battered Fillets</td><td>16</td><td>32 oz.</td></tr>
+            <tr><td>471</td><td>Tilapia Fillets</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>500</td><td>Mahi-Mahi Fillets</td><td>8</td><td>48 oz.</td></tr>
+            <tr><td>1059</td><td>Grouper</td><td>8</td><td>48 oz.</td></tr>
+            <tr><td>3747</td><td>Sockeye Salmon Boneless Fillet</td><td>6</td><td>30 oz.</td></tr>
+            <tr><td>4079</td><td>Flounder Fillets IQF - 2 lb.</td><td>7/9</td><td>32 oz.</td></tr>
+            <tr><td>6751</td><td>Vegas Flounder</td><td>6</td><td>33 oz.</td></tr>
+            <tr><td>6752</td><td>Flounder Rolled with Crab</td><td>4</td><td>16 oz.</td></tr>
+            <tr><td>6753</td><td>Sea Bass Fillet</td><td>4</td><td>24 oz.</td></tr>
+            <tr><td>6935</td><td>Rainbow Trout Fillet</td><td>4</td><td>10 oz.</td></tr>
+            <tr><td>6936</td><td>Orange Roughy Fillets</td><td>1 Bag</td><td>48 oz.</td></tr>
+            <tr><td>8055</td><td>Wild Salmon w/Sweet Herb Rub (4) 8 oz.</td><td>4</td><td>32 oz.</td></tr>
+            <tr><td>8056</td><td>Halibut Steaks (4) 8 oz.</td><td>4</td><td>24 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Seafood – Shellfish</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>245</td><td>Sea Scallops – 1 lb. bags</td><td>1</td><td>48 oz.</td></tr>
+            <tr><td>392</td><td>Shrimp Scampi</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>564</td><td>I.Q.F. Shrimp – Tail-on</td><td>31/40</td><td>40 oz.</td></tr>
+            <tr><td>669</td><td>Shrimp – Peeled &amp; Deveined</td><td>51/60</td><td>24 oz.</td></tr>
+            <tr><td>1123</td><td>Lobster Tails</td><td>4</td><td>22 oz.</td></tr>
+            <tr><td>1440</td><td>Breaded Shrimp</td><td>31/40</td><td>32 oz.</td></tr>
+            <tr><td>8037</td><td>Crabby Cakes 2.5 lbs.</td><td>1</td><td>40 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Side Dishes</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>230</td><td>Mashed Butternut Squash Tray</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>237</td><td>Baked Cinnamon Apples Tray</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>446</td><td>Green Beans Almondine Tray</td><td>1</td><td>12 oz.</td></tr>
+            <tr><td>452</td><td>Garlic Mashed Potatoes Tray</td><td>1</td><td>20 oz.</td></tr>
+            <tr><td>1118</td><td>Twice-Cooked Potatoes Tray</td><td>8</td><td>32 oz.</td></tr>
+            <tr><td>1121</td><td>Sweet Potato Casserole Tray</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1168</td><td>Curly Fries with Skin</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1169</td><td>Tater Puff Potatoes</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1170</td><td>Taterbabies Potato – Spiced</td><td>1</td><td>32 oz.</td></tr>
+            <tr><td>1229</td><td>Creamed Spinach Tray</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>1231</td><td>Broccoli with Cheese Sauce Tray</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>1263</td><td>Mashed Potatoes Tray</td><td>1</td><td>21 oz.</td></tr>
+            <tr><td>1265</td><td>Roasted Red Potato Wedges Tray</td><td>1</td><td>17.5 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Soup</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>8057</td><td>Shrimp &amp; Sausage Gumbo</td><td>1</td><td>18 oz.</td></tr>
+            <tr><td>8058</td><td>Charleston She Crab Soup</td><td>1</td><td>18 oz.</td></tr>
+            <tr><td>8059</td><td>Lobster Bisque</td><td>1</td><td>18 oz.</td></tr>
+            <tr><td>8060</td><td>New England Clam Chowder</td><td>1</td><td>18 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Vegetables</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>453</td><td>Broccoli Spears</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>481</td><td>Chopped Spinach</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>503</td><td>Whole Kernel Corn</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>509</td><td>Mixed Vegetables</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>511</td><td>Peas</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>556</td><td>Broccoli, Cauliflower &amp; Carrots</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>589</td><td>French Cut Beans</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>594</td><td>Whole Baby Carrots</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>687</td><td>Corn on the Cob – 3 Ears</td><td>2</td><td>32 oz.</td></tr>
+            <tr><td>1061</td><td>Baby Brussels Sprouts</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1062</td><td>Baby Lima Beans</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>1063</td><td>Collard Greens – Chopped</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1064</td><td>Corn White Shoepeg</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1066</td><td>Okra – Breaded</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1067</td><td>Okra – Cut</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>1070</td><td>Peas – Sugar Snap</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1071</td><td>Sliced Yellow Squash</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1072</td><td>Turnip Greens – Chopped</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>1303</td><td>Cauliflower</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>6780</td><td>Chopped Onions</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>6781</td><td>Chopped Green Peppers</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>6782</td><td>Cut Green Beans</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>6783</td><td>Chopped Broccoli</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>6784</td><td>Broccoli Florets</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>6785</td><td>Super Sweet Yellow Corn</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>6786</td><td>Blackeyed Peas</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>6787</td><td>Peas and Carrots</td><td>2</td><td>16 oz.</td></tr>
+            <tr><td>4584</td><td>Spring Vegetables with Asparagus</td><td>1</td><td>12 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Groceries – Pantry</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>390</td><td>Land O'Lakes Butter</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>424</td><td>Beef Bologna</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>703</td><td>Chicken of the Sea White Tuna in Water</td><td>1</td><td>5 oz.</td></tr>
+            <tr><td>723</td><td>Kraft Velveeta Mac &amp; Cheese</td><td>1</td><td>12 oz.</td></tr>
+            <tr><td>732</td><td>Lipton Tea Bags (100 ct.)</td><td>1</td><td>100 Count</td></tr>
+            <tr><td>753</td><td>Lipton Onion Soup</td><td>1</td><td>2 oz.</td></tr>
+            <tr><td>757</td><td>Betty Crocker Potatoes au Gratin</td><td>1</td><td>4.7 oz.</td></tr>
+            <tr><td>760</td><td>Kraft Parmesan Cheese Grated</td><td>1</td><td>8 oz.</td></tr>
+            <tr><td>818</td><td>Kraft Macaroni &amp; Cheese</td><td>1</td><td>7.25 oz.</td></tr>
+            <tr><td>819</td><td>Kraft Macaroni &amp; Cheese Deluxe</td><td>1</td><td>14 oz.</td></tr>
+            <tr><td>824</td><td>Ronzoni Thin Spaghetti</td><td>1</td><td>16 oz.</td></tr>
+            <tr><td>827</td><td>Maxwell House Coffee</td><td>1</td><td>11.5 oz.</td></tr>
+            <tr><td>889</td><td>Strawberry Preserves - Carriage House</td><td>1</td><td>4 lb.</td></tr>
+            <tr><td>1051</td><td>Skippy Peanut Butter</td><td>1</td><td>16.3 oz.</td></tr>
+            <tr><td>1090</td><td>Dececco Spaghetti #12</td><td>1</td><td>16 oz.</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="category-section">
+          <div class="category-title">Sundries</div>
+          <table><thead><tr><th>Item #</th><th>Description</th><th>Items</th><th>Weight</th></tr></thead><tbody>
+            <tr><td>750</td><td>Dove Soap Bar - White (6) 4 oz. Bars</td><td>6</td><td>34 oz.</td></tr>
+            <tr><td>756</td><td>Saran Wrap Clear, 100-ft.</td><td>1</td><td>100 Feet</td></tr>
+            <tr><td>782</td><td>Bounce Dryer Sheets 160 ct.</td><td>1</td><td>160 Count</td></tr>
+            <tr><td>789</td><td>Gladlock Sandwich Bags</td><td>1</td><td>100 Count</td></tr>
+            <tr><td>851</td><td>Bounty Paper Towels</td><td>1</td><td>48 Sheets</td></tr>
+            <tr><td>879</td><td>Charmin Toilet Tissue (100 count, 2-ply)</td><td>1</td><td>4 Rolls</td></tr>
+            <tr><td>977</td><td>Reynolds Aluminum Foil</td><td>1</td><td>200 Feet</td></tr>
+          </tbody></table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Get In Touch</div>
+        <h2>Contact Us</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p><a href="tel:18003652404">1-800-365-2404</a></p>
+        </div>
+        <div class="contact-item">
+          <h4>Hours</h4>
+          <p>Monday – Friday<br>9:00AM – 5:00PM EST</p>
+        </div>
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p><a href="/cdn-cgi/l/email-protection#7f161119103f1c0f1910101b0c511c1012"><span class="__cf_email__" data-cfemail="e78e898188a784978188888394c984888a">[email&#160;protected]</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Colorado Prime Foods — All Rights Reserved
+  </footer>
+
+</body>
+</html>
